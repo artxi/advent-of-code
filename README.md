@@ -1,3 +1,3 @@
 # advent-of-code
 
-[text](https://adventofcode.com/)
+[Advent of code](https://adventofcode.com/) puzzle solutions

@@ -4,39 +4,50 @@ const path = require('path');
 function initDay(year, day) {
     const basePath = path.resolve(__dirname, '../');
 
-    initFileSystem(basePath, year, day);
+    const dayPath = initFileSystem(basePath, year, day);
 
-    // TO-DO: Get puzzle input
+    getInput(dayPath, year, day);
 
     return;
 }
 
 function initFileSystem(basePath, year, day) {
-    fs.readFile(path.resolve(basePath, 'config/dayTemplate.js'), 'utf-8', (err, template) => {
-        const yearPath = path.resolve(basePath, year);
-        const dayPath = path.resolve(yearPath, (day.length < 2 ? '0' : '') + day);
+    const template = fs.readFileSync(path.resolve(basePath, 'config/dayTemplate.js'), 'utf-8');
 
-        const templatePaths = [
-            path.resolve(dayPath, 'part1.js'),
-            path.resolve(dayPath, 'part2.js')
-        ];
+    const yearPath = path.resolve(basePath, year);
+    const dayPath = path.resolve(yearPath, (day.length < 2 ? '0' : '') + day);
 
-        if(!fs.existsSync(yearPath)) {
-            fs.mkdirSync(yearPath);
-        }
+    if (!fs.existsSync(yearPath)) {
+        fs.mkdirSync(yearPath);
+    }
 
-        if(!fs.existsSync(dayPath)) {
-            fs.mkdirSync(dayPath);
-        }
+    if (!fs.existsSync(dayPath)) {
+        fs.mkdirSync(dayPath);
+    }
 
-        for (const path of templatePaths) {
-            fs.writeFile(path, template, (err) => {
-                if(err) {
-                    console.log(err);
-                }
-            });
-        }
-    });
+    fs.writeFileSync(path.resolve(dayPath, 'part1.js'), template);
+    fs.writeFileSync(path.resolve(dayPath, 'part2.js'), template);
+
+    return dayPath;
+}
+
+async function getInput(path, year, day) {
+    if (existsInputFile(path)) {
+        return;
+    }
+
+    // TO-DO: Get input file
+    const data = 'kk';
+
+    createInputFile(path, data);
+}
+
+function createInputFile(filePath, data) {
+    fs.writeFileSync(path.resolve(filePath, 'input.txt'), data);
+}
+
+function existsInputFile(basePath) {
+    return fs.existsSync(path.resolve(basePath, 'input.txt'));
 }
 
 module.exports = {

@@ -29,7 +29,7 @@ for (const update of updates) {
     num:
     for (let i = update.length - 1; i >= 0; i--) {
         const rule = ruleIndex[update[i]];
-        
+
         if (!rule) {
             continue num;
         }

@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/artxi/advent-of-code/issues"
   },
-  "homepage": "https://github.com/artxi/advent-of-code#readme"
+  "homepage": "https://github.com/artxi/advent-of-code#readme",
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  }
 }

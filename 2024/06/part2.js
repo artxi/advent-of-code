@@ -12,7 +12,7 @@ let array = [];
 setGrid();
 
 let answer = 0;
-let loopCheckArray = [];
+let loopCheckArray = {};
 
 y:
 for (let i = 0; i < array.length; i++) {
@@ -38,7 +38,7 @@ console.timeEnd('Time');
 
 function loopCheck(y, x, dir) {
     if (!loopCheckArray[dir]) {
-        loopCheckArray[dir] = []
+        loopCheckArray[dir] = [];
     }
 
     if (!loopCheckArray[dir][y]) {

@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const { CLIENT_RENEG_LIMIT } = require('tls');
 
 console.time('Time');
 
